@@ -1,0 +1,82 @@
+@model prodotnet.Models.CreatePostModel
+
+@{
+    ViewData["Title"] = "Cập nhật bài viết";
+    Layout = "_Layout";
+    var list = ViewData["categories"] as MultiSelectList;
+}
+
+<h1>@ViewData["Title"]</h1>
+
+
+<hr />
+<div class="row">
+    <div class="col-md-12">
+        <form asp-action="Edit" >
+            <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+            <input type="hidden" asp-for="PostId" />
+            <div class="form-group">
+                <label asp-for="CategoryIDs" class="control-label"></label>
+                <select asp-for="CategoryIDs" asp-items="list" multiple="multiple" class="w-100"></select>
+                <span asp-validation-for="CategoryIDs" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="Title" class="control-label"></label>
+                <input asp-for="Title" class="form-control" />
+                <span asp-validation-for="Title" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="Description" class="control-label"></label>
+                <textarea asp-for="Description" class="form-control"></textarea>
+                <span asp-validation-for="Description" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="Slug" class="control-label"></label>
+                <input asp-for="Slug" class="form-control" />
+                <span asp-validation-for="Slug" class="text-danger"></span>
+            </div>
+            @* <div class="form-group">
+                <label asp-for="ImageName" class="control-label"></label>
+                <input asp-for="ImageName" class="form-control" />
+                <span asp-validation-for="ImageName" class="text-danger"></span>
+            </div> *@
+            @* <div class="form-group">
+                <label asp-for="FileUpload"></label>
+                <input asp-for="FileUpload"/>
+                <span asp-validation-for="FileUpload"></span>
+            </div> *@
+            <div class="form-group">
+                <label asp-for="Content" class="control-label"></label>
+                <textarea asp-for="Content" class="form-control"></textarea>
+                <span asp-validation-for="Content" class="text-danger"></span>
+            </div>
+            <div class="form-group form-check">
+                <label class="form-check-label">
+                    <input class="form-check-input" asp-for="Published" /> @Html.DisplayNameFor(model => model.Published)
+                </label>
+            </div>
+            <div class="form-group">
+                <input type="submit" value="Save" class="btn btn-primary" />
+            </div>
+        </form>
+    </div>
+</div>
+
+<div>
+    <a asp-action="Index">Back to List</a>
+</div>
+
+@section Scripts
+{
+    @await Html.PartialAsync("_Summernote", new {height = 200, selector = "#Content"})
+
+    <script src="~/multiple-select/multiple-select.min.js"></script>
+    <link rel="stylesheet" href="~/multiple-select/multiple-select.min.css" />
+    <script>
+            $('#CategoryIDs').multipleSelect({
+                selectAll: false,
+                keepOpen: false,
+                isOpen: false
+            });
+    </script>
+}

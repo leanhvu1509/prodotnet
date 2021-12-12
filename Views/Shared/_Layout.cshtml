@@ -1,0 +1,185 @@
+﻿
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>@ViewData["Title"] - GameView</title>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/4.0.0/animate.min.css" />
+    <!--Icon-->
+    <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.7.0/css/all.css"
+        integrity="sha384-lZN37f5QGtY3VHgisS14W3ExzMWZxybE1SJSEsQp9S+oqd12jhcu+A56Ebc1zFSJ" crossorigin="anonymous">
+    <!--Bootstrap css-->
+    <link rel="stylesheet" href="~/bootstrap/css/bootstrap.min.css" type="text/css">
+    <!-- owl -->
+    <link rel="stylesheet" href="~/OwlCarousel2-2.3.4/dist/assets/owl.carousel.min.css" type="text/css">
+    <link rel="stylesheet" href="~/OwlCarousel2-2.3.4/dist/assets/owl.theme.default.min.css" type="text/css">
+    <!--CSS-->
+    <link rel="stylesheet" href="~/mycss/style.css" type="text/css">
+</head>
+
+<body>
+<!-- Option -->
+    <button onclick="topFunction()" id="myBtn" title="Go to top">Top</button>   
+    <!--Header-->
+    <header class="header">
+        <!-- Thanh options sign in up -->
+        <div class="option">
+        <div class="container">
+            <div class="row">
+                <div class="col-lg-6 col-md-4">
+                    <div class="social">
+                        <a href="#"><i class="fab fa-facebook-square"></i></a>
+                        <a href="#"><i class="fab fa-instagram"></i></a>
+                        <a href="#"><i class="fab fa-youtube"></i></a>
+                        <a href="#"><i class="fas fa-envelope"></i></a>
+                    </div>
+                </div>
+                <div class="col-lg-6 col-md-8 ">
+                    <div class="sign" style="float: right;color: #ffffff;"><i class="fas fa-sign-in-alt"></i>
+                        <a asp-area="" asp-controller="Dashboard" asp-action="Login" target="_self"> Đăng nhập </a>/<a asp-area="" asp-controller="Dashboard" asp-action="Register" target="_self">Đăng ký</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div> <!-- Thanh options sign in up -->
+    <!-- Thanh menu -->
+        <div class="container">
+            <div class="row">
+                <div class="col-md-12">
+                    <nav class="navbar navbar-expand-lg navbar-light">
+                        <a class="navbar-brand" href="index.html"><img src="~/img/logo.png" alt="" style="height: 60px;"></a>
+                        <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+                            <span class="navbar-toggler-icon"></span>
+                        </button>
+                        <div class="collapse navbar-collapse justify-content-center" id="navbarSupportedContent">
+                            <ul class="navbar-nav">
+                                <li class="nav-item">
+                                    <li class="nav-item">
+                                        <a class="nav-link" asp-area="" asp-controller="Home" asp-action="Index">TRANG CHỦ</a>
+                                    </li>
+                                    <a class="nav-link" asp-area="" asp-controller="Home" asp-action="Index">GAME MOBILE</a>
+                                </li>
+                                <li class="nav-item">
+                                    <a class="nav-link" asp-area="" asp-controller="Home" asp-action="Index">GAME PC-CONSOLE</a>
+                                </li>
+                                <li class="nav-item">
+                                    <a class="nav-link" asp-area="" asp-controller="Home" asp-action="Index">CỘNG ĐỒNG ESPORTS</a>
+                                </li>
+                                @* <li class="nav-item active">
+                                    <a class="nav-link" asp-area="" asp-controller="Home" asp-action="Index">LIÊN HỆ </a>
+                                </li>
+                                <li class="nav-item dropdown">
+                                    <a class="nav-link dropdown-toggle" href="News.html" id="navbarDropdown" role="button"
+                                        data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                                        KHÁC
+                                    </a>
+                                    <div class="dropdown-menu" aria-labelledby="navbarDropdown">
+                                        <a class="dropdown-item" href="#">GÓC NHÌN</a>
+                                        <a class="dropdown-item" href="#">CHIA SẺ</a>
+                                        <a class="dropdown-item" href="#">CỘNG ĐỒNG</a>
+                                    </div>
+                                </li> *@
+                            </ul>
+                        </div>
+                        <!-- nut tim kiem -->
+                        <div class="search">
+                        <button class="open" onclick="openSearch()"><i class="fas fa-search"></i></button>
+                        </div>
+                    </nav>   
+                </div>
+            </div>
+        </div> <!-- Thanh menu -->
+        </header>
+    <!-- /Header -->
+
+        <!-- search overlay-->
+        <div id="myOverlay" class="overlay">
+            <span class="closebtn" onclick="closeSearch()" title="Close Overlay">×</span>
+            <div class="overlay-content">
+                <form action="">
+                    <input type="text" placeholder="Tìm kiếm.." name="search">
+                    <button type="submit"><i class="fa fa-search"></i></button>
+                </form>
+            </div>
+        </div>
+        <!-- /search -->
+
+    @RenderBody()
+    <!--footer-->
+    <footer class="footer">
+        <div class="container">
+            <div class="row">
+                <div class="col-lg-6">
+                    <div class="about">
+                        <div class="logo">
+                            <a href="#"><img src="~/~/img/logo 2.png" style="width:250px;" alt=""></a>
+                        </div>
+                        <p>Đây là trang website sản phẩm của nhóm SV K17-CNTT-Đại học Phú Xuân.</p>
+                        <div class="social">
+                            <a href="#"><i class="fab fa-facebook-square"></i></a>
+                            <a href="#"><i class="fab fa-instagram"></i></a>
+                            <a href="#"><i class="fab fa-youtube"></i></a>
+                            <a href="#"><i class="fas fa-envelope"></i></a>
+                        </div>
+                        <p style="margin-top: 10px;">
+                    Địa chỉ: 176 Trần Phú, Huế<br>
+                    Điện thoai: +84 19001003<br>
+                    Email liên hệ: lienhe@gameview.vn<br>
+                    Email hợp tác: hoptac@gameview.vn</p>
+                    </div>
+                </div>
+                <div class="col-lg-6 col-md-6">
+                    <div class="tags">
+                        <div class="footer-title">
+                            <h5>Tags Cloud</h5>
+                        </div>
+                        <div class="tag-list">
+                            <a href="#"><span>Tin tức</span></a>
+                            <a href="#"><span>PC-console</span></a>
+                            <a href="#"><span>X-Box</span></a>
+                            <a href="#"><span>PlayStation</span></a>
+                            <a href="#"><span>Mobile</span></a>
+                            <a href="#"><span>Review</span></a>
+                            <a href="#"><span>Trailer</span></a>
+                            <a href="#"><span>Thư viên</span></a>
+                            <a href="#"><span>Chia sẻ</span></a>
+                            <a href="#"><span>Đánh giá</span></a>
+                            <a href="#"><span>Cộng Đồng</span></a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="copyright">
+                <div class="row">
+                    <div class="col-lg-12 text-center">
+                        <div class="ca-text">
+                            <p>
+                                Copyright &copy;<script>
+                                    document.write(new Date().getFullYear());
+                                </script> All rights reserved  by Fox.
+                            </p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </footer>
+    <!--footer-->
+</body> 
+    <!--Bootstrap js-->
+    <script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.0/dist/umd/popper.min.js"
+        integrity="sha384-Q6E9RHvbIyZFJoft+2mJbHaEWldlvI9IOYy5n3zV9zzTtmI3UksdQRVvoxMfooAo" crossorigin="anonymous">
+    </script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/js/bootstrap.min.js"
+        integrity="sha384-OgVRvuATP1z7JjHLkuOU7Xw704+h835Lr+6QL9UvYjZE3Ipu6Tp75j7Bh/kR0JKI" crossorigin="anonymous">
+    </script>
+    <!-- owl -->
+    <script type="text/javascript" src="~/OwlCarousel2-2.3.4/docs/assets/vendors/jquery.min.js"></script>
+    <script type="text/javascript" src="~/OwlCarousel2-2.3.4/dist/owl.carousel.min.js"></script>
+    <!-- js -->
+    <script type="text/javascript" src="~/myjs/main.js"></script>
+    @await RenderSectionAsync("Scripts", required: false)
+</html>

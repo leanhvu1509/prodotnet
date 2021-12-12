@@ -1,0 +1,55 @@
+@model prodotnet.Models.Post
+@{
+    ViewData["Title"] = Model.Title as string;
+}
+
+<div class="container">
+    <div class="options-menu">
+        <ul>
+            <li><i class="fas fa-home"></i><a href="">Trang chủ</a> </li>
+            <li><a href=""> Tin tức</a></li>
+        </ul>
+    </div>
+</div>
+<div class="content-child">
+        <div class="post-review">
+            <section class="review">
+                <div class="container">
+                    <div class="row">
+                        <div class="col-lg-8">
+                            <div>
+                                <h2 class="post-excerpt">@Model.Title</h2>
+                                <div class="sapo">@Model.Description</div>
+                                @Html.Raw(Model.Content)
+                            </div>
+                        </div>
+                        <div class="col-lg-4 col-md-7">
+                            <div class="sidebar-option">
+                                <div class="sidebar-option">
+                                    <div class="bannerslide">
+                                        <img src="~/img/banner/17952848_1096152247156958_6424826800698070719_n.png">
+                                        <img src="~/img/banner/18056780_1096152233823626_3983504965514388046_n.png">
+                                        <img src="~/img/banner/18032996_1096152250490291_3089556685517829575_n.jpg">
+                                        <img src="~/img/banner/17991028_1096152283823621_7523349131145672731_n.png">
+                                    </div>
+                                    <script type="text/javascript" src="myjs/slide.js">
+                                    </script>
+                                </div>                
+                                <div class="subscribe">
+                                    <div class="div-title">
+
+                                    </div>
+                                    <p>Đăng ký để theo dõi những tin tức và cập nhật mới nhất của website chúng tôi.</p>
+                                    <form action="#">
+                                        <input type="text" placeholder="Name">
+                                        <input type="text" placeholder="Email">
+                                        <button type="submit"><span>Theo dõi</span></button>
+                                    </form>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </section>
+        </div>
+    </div>

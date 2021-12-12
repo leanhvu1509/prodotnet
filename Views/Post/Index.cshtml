@@ -1,0 +1,84 @@
+@model PaginatedList<prodotnet.Models.Post>
+
+@{
+    ViewData["Title"] = "Danh sách bài viết";
+    Layout = "_Layout";
+}
+
+<h1>Danh sách bài viết</h1>
+<partial name="_AlertMessage" />
+<p>
+    <a asp-action="Create">Thêm mới</a>
+</p>
+<table class="table">
+    <form asp-action="Index" method="get">
+        <div class="form-actions no-color">
+            <p>
+            Nhập tìm kiếm: <input type="text" name="SearchString" value="@ViewData["CurrentFilter"]" /> 
+            <input type="submit" value="Tìm" class="btn btn-default" /> | 
+            <a asp-action="Index">Trở về danh sách</a>
+            </p>
+        </div>
+    </form>
+    <thead>
+        <tr>
+            <th>
+                <a asp-action="Index" asp-route-sortOrder ="@ViewData["NameSortParm"]">
+                    Tên bài viết
+                    </a>
+            </th>
+            <th>
+                Tác giả
+            </th>
+
+            <th>
+                <a asp-action="Index" asp-route-sortOrder ="@ViewData["DateSortParm"]">
+                    Ngày cập nhật</a>
+            </th>
+            <th>
+                Xuất bản
+            </th>
+            <th>Chuyên mục</th>
+            <th></th>
+        </tr>
+    </thead>
+    <tbody>
+@foreach (var item in Model) {
+        <tr>
+            <td>
+                <a asp-action="Details" asp-route-id="@item.PostId">@Html.DisplayFor(modelItem => item.Title)</a>                
+            </td>
+    
+            <td>
+                @Html.DisplayFor(modelItem => item.User.Username)
+            </td>
+
+            <td>
+                @Html.DisplayFor(modelItem => item.DateUpdated)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Published)
+            </td>
+            <td>
+                @Html.Raw(string.Join("<br>",
+                    item.PostCategories
+                    .Select(p => p.Category)
+                    .ToList()
+                    .Select(c => $"<i>{c.Title}</i>")))
+            </td>
+            <td>
+                |
+                <a asp-action="Edit" asp-route-id="@item.PostId">Sửa</a> |
+                <a asp-action="Delete" asp-route-id="@item.PostId">Xóa</a>
+            </td>
+        </tr>
+}
+    </tbody>
+</table>
+</table>
+@{
+var prevDisabled = !Model.HasPreviousPage ? "disabled" : ""; 
+var nextDisabled = !Model.HasNextPage ? "disabled" : ""; 
+}
+<a class="btn btn-primary" asp-action="Index" asp-route-sortOrder="@ViewData["CurrentSort"]" asp-route-pageNumber="@(Model.PageIndex - 1)" asp-route-currentFilter="@ViewData["CurrentFilter"]" class="btn btn-default @prevDisabled"> Previous </a>
+<a class="btn btn-primary" asp-action="Index" asp-route-sortOrder="@ViewData["CurrentSort"]" asp-route-pageNumber="@(Model.PageIndex + 1)" asp-route-currentFilter="@ViewData["CurrentFilter"]" class="btn btn-default @nextDisabled"> Next </a>
